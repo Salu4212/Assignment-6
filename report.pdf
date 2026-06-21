@@ -1,0 +1,449 @@
+# Assignment 6: Medians and Order Statistics & Elementary Data Structures
+
+## Student Information
+
+**Name:** Saurav Patel
+**Course:** Algorithms and Data Structures
+**Assignment:** Assignment 6 – Medians and Order Statistics & Elementary Data Structures
+**Programming Language:** Python 3
+
+---
+
+# Introduction
+
+This assignment explores two fundamental topics in computer science: selection algorithms and elementary data structures. Selection algorithms are used to determine the kth smallest element in a collection of data, while elementary data structures provide efficient methods for organizing, storing, and manipulating information.
+
+The assignment is divided into two parts. The first part focuses on implementing and analyzing deterministic and randomized selection algorithms. The second part focuses on implementing basic data structures including arrays, stacks, queues, and linked lists while evaluating their performance and practical applications.
+
+---
+
+# Part 1: Selection Algorithms
+
+## Objective
+
+The objective of this section is to implement algorithms capable of finding the kth smallest element in an unsorted array and analyze their theoretical and practical performance.
+
+The following algorithms were implemented:
+
+1. Randomized Quickselect
+2. Deterministic Median-of-Medians
+
+---
+
+# Randomized Quickselect
+
+## Overview
+
+Randomized Quickselect is a selection algorithm based on the partitioning strategy used in Quicksort. Instead of sorting the entire array, it recursively processes only the partition containing the desired element.
+
+The algorithm works as follows:
+
+1. Randomly select a pivot element.
+2. Partition the array around the pivot.
+3. Determine which partition contains the kth smallest element.
+4. Recursively search only the relevant partition.
+
+---
+
+## Advantages
+
+* Simple implementation
+* Excellent average-case performance
+* Very efficient in practice
+* Low memory overhead
+
+---
+
+## Disadvantages
+
+* Worst-case running time is O(n²)
+* Performance depends on pivot selection
+
+---
+
+## Time Complexity Analysis
+
+### Best Case
+
+When the pivot divides the array into nearly equal halves:
+
+T(n) = T(n/2) + O(n)
+
+Result:
+
+O(n)
+
+### Average Case
+
+Random pivots typically create balanced partitions.
+
+Expected Running Time:
+
+O(n)
+
+### Worst Case
+
+Occurs when the pivot repeatedly becomes the smallest or largest element.
+
+T(n) = T(n − 1) + O(n)
+
+Result:
+
+O(n²)
+
+---
+
+## Space Complexity
+
+Average recursion depth:
+
+O(log n)
+
+Worst-case recursion depth:
+
+O(n)
+
+---
+
+# Deterministic Median-of-Medians Algorithm
+
+## Overview
+
+The Median-of-Medians algorithm guarantees worst-case linear time selection.
+
+The algorithm operates as follows:
+
+1. Divide the array into groups of five elements.
+2. Find the median of each group.
+3. Recursively determine the median of those medians.
+4. Use this value as the pivot.
+5. Partition the array.
+6. Continue recursively in the appropriate partition.
+
+---
+
+## Advantages
+
+* Guaranteed O(n) worst-case performance
+* Predictable execution time
+* Suitable for critical systems requiring consistent performance
+
+---
+
+## Disadvantages
+
+* More complicated implementation
+* Larger constant factors
+* Usually slower than Quickselect in practical applications
+
+---
+
+## Time Complexity Analysis
+
+The recurrence relation is:
+
+T(n) = T(n/5) + T(7n/10) + O(n)
+
+The algorithm guarantees that at least 30% of elements are discarded during each recursive step.
+
+Solving the recurrence gives:
+
+T(n) = O(n)
+
+---
+
+## Space Complexity
+
+The algorithm creates additional sublists during partitioning.
+
+Auxiliary Space:
+
+O(n)
+
+---
+
+# Comparison of Selection Algorithms
+
+| Feature         | Randomized Quickselect | Median of Medians |
+| --------------- | ---------------------- | ----------------- |
+| Best Case       | O(n)                   | O(n)              |
+| Average Case    | O(n)                   | O(n)              |
+| Worst Case      | O(n²)                  | O(n)              |
+| Practical Speed | Faster                 | Slower            |
+| Implementation  | Simple                 | Complex           |
+| Predictability  | Lower                  | Higher            |
+
+---
+
+# Empirical Analysis
+
+## Experimental Setup
+
+The algorithms were tested using arrays of different sizes:
+
+* 1,000 elements
+* 5,000 elements
+* 10,000 elements
+* 50,000 elements
+
+Input distributions included:
+
+* Random arrays
+* Sorted arrays
+* Reverse-sorted arrays
+
+The median element was selected in each experiment.
+
+---
+
+## Observed Results
+
+The experiments showed that Randomized Quickselect consistently performed faster than the Median-of-Medians algorithm on most datasets.
+
+This behavior occurs because:
+
+* Quickselect performs fewer computations.
+* Median-of-Medians requires additional grouping and recursive median calculations.
+* Constant factors significantly impact practical performance.
+
+However, Median-of-Medians maintained stable performance regardless of input arrangement and guaranteed linear running time.
+
+---
+
+## Discussion
+
+Although Median-of-Medians provides superior theoretical guarantees, Randomized Quickselect is generally preferred in real-world applications due to its simplicity and speed.
+
+The deterministic algorithm becomes valuable in environments where worst-case guarantees are critical, such as real-time systems and security-sensitive applications.
+
+---
+
+# Part 2: Elementary Data Structures
+
+## Objective
+
+The goal of this section is to implement and analyze several fundamental data structures commonly used in software development and algorithm design.
+
+The following structures were implemented:
+
+1. Arrays
+2. Stacks
+3. Queues
+4. Singly Linked Lists
+
+---
+
+# Arrays
+
+## Overview
+
+An array stores elements in contiguous memory locations, enabling efficient random access.
+
+Implemented Operations:
+
+* Insertion
+* Deletion
+* Access
+
+---
+
+## Time Complexity
+
+| Operation    | Complexity |
+| ------------ | ---------- |
+| Access       | O(1)       |
+| Insert (End) | O(1)       |
+| Delete       | O(n)       |
+| Search       | O(n)       |
+
+---
+
+## Applications
+
+* Image processing
+* Scientific computing
+* Databases
+* Matrix operations
+
+---
+
+# Stacks
+
+## Overview
+
+A stack follows the Last-In-First-Out (LIFO) principle.
+
+Implemented Operations:
+
+* Push
+* Pop
+* Peek
+* Is Empty
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+| --------- | ---------- |
+| Push      | O(1)       |
+| Pop       | O(1)       |
+| Peek      | O(1)       |
+
+---
+
+## Applications
+
+* Function call management
+* Undo operations
+* Expression evaluation
+* Syntax parsing
+
+---
+
+# Queues
+
+## Overview
+
+A queue follows the First-In-First-Out (FIFO) principle.
+
+Implemented Operations:
+
+* Enqueue
+* Dequeue
+* Is Empty
+
+---
+
+## Time Complexity
+
+| Operation | Complexity |
+| --------- | ---------- |
+| Enqueue   | O(1)       |
+| Dequeue   | O(n)       |
+
+---
+
+## Applications
+
+* Process scheduling
+* Task management systems
+* Network packet buffering
+* Printer queues
+
+---
+
+# Singly Linked Lists
+
+## Overview
+
+A linked list consists of nodes connected through references.
+
+Each node contains:
+
+* Data
+* Pointer to the next node
+
+Implemented Operations:
+
+* Insertion
+* Deletion
+* Traversal
+
+---
+
+## Time Complexity
+
+| Operation | Complexity                      |
+| --------- | ------------------------------- |
+| Insert    | O(1) at end (with tail pointer) |
+| Delete    | O(n)                            |
+| Search    | O(n)                            |
+| Traverse  | O(n)                            |
+
+---
+
+## Applications
+
+* Dynamic memory allocation
+* Graph representations
+* File systems
+* Operating systems
+
+---
+
+# Arrays vs Linked Lists
+
+| Feature         | Array      | Linked List    |
+| --------------- | ---------- | -------------- |
+| Memory Layout   | Contiguous | Non-Contiguous |
+| Access Time     | O(1)       | O(n)           |
+| Insertion       | O(n)       | O(1)           |
+| Deletion        | O(n)       | O(1)           |
+| Memory Overhead | Low        | Higher         |
+
+---
+
+# Stacks and Queues: Array vs Linked List
+
+## Arrays
+
+Advantages:
+
+* Faster access
+* Better cache performance
+* Simpler implementation
+
+Disadvantages:
+
+* Fixed-size limitations in some implementations
+* Expensive front insertions and deletions
+
+## Linked Lists
+
+Advantages:
+
+* Dynamic growth
+* Efficient insertion and deletion
+
+Disadvantages:
+
+* Extra memory consumption
+* Slower traversal
+
+---
+
+# Practical Applications
+
+Choosing the correct data structure depends on the application's requirements.
+
+Arrays are preferred when:
+
+* Fast indexing is needed.
+* Memory locality is important.
+
+Linked Lists are preferred when:
+
+* Frequent insertions and deletions occur.
+
+Stacks are preferred when:
+
+* Reversing operations.
+* Managing recursive calls.
+
+Queues are preferred when:
+
+* Maintaining processing order.
+* Scheduling tasks.
+
+---
+
+# Conclusion
+
+This assignment provided practical experience implementing selection algorithms and elementary data structures.
+
+The Randomized Quickselect algorithm demonstrated excellent practical performance with expected linear running time, while the Median-of-Medians algorithm provided guaranteed worst-case linear performance.
+
+The implementation of arrays, stacks, queues, and linked lists reinforced fundamental concepts related to data organization and algorithm efficiency. Understanding the strengths and weaknesses of these structures is essential for designing efficient software systems.
+
+Overall, the assignment highlighted the importance of selecting appropriate algorithms and data structures based on performance requirements, memory constraints, and application-specific needs.
